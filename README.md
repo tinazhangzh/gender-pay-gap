@@ -54,15 +54,3 @@ install.packages(c(
   "ggplot2"
 ))
 ```
-
-## 📄 Citation
-
-```bibtex
-@misc{zhang2025gender,
-  author = {Zihan Zhang and Jan Hannig},
-  title = {The Gender Wage Gap Among Professors in North Carolina Public Universities: A Causal Inference Analysis},
-  year = {2025},
-  institution = {University of North Carolina at Chapel Hill}
-}
-```
-```
