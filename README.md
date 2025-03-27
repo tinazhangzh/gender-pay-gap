@@ -36,6 +36,9 @@ Implemented in R:
 ## ▶️ Run Example
 
 ```r
+# Run OLS analysis
+source("02-analysis/run_OLS.R")
+
 # Run PSM analysis
 source("02-analysis/run_psm.R")
 
