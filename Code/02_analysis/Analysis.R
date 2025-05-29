@@ -19,7 +19,15 @@ female_salary <- average_salary_by_gender$mean_salary[average_salary_by_gender$G
 gender_pay_gap <- (male_salary - female_salary) / male_salary * 100
 
 
-# 2. PSM model
+# 2. OLS
+baseline_model <- lm(
+  log10_Salary ~ Gender + Google.Scholar.ID + Titles + University_Code + Department_Code + Working_Years + log10_i10index,
+  data = data
+)
+summary(baseline_model)
+
+
+# 3. PSM model
 # 1) Propensity Scores
 # Propensity score model
 new_propensity_model <- glm(Gender ~ University_Code : Department_Code : log10_i10index + Google.Scholar.ID + Titles : Working_Years, 
@@ -41,7 +49,7 @@ lm_model <- lm(log10_Salary ~ Gender + University_Code : Department_Code : log10
 summary(lm_model)
 
 
-# 3. Causal Forest model
+# 4. Causal Forest model
 Y <- data$log10_Salary      # Outcome variable            
 W <- data$Gender        # Binary treatment indicator           
 X <- data[, c("Working_Years", "log10_i10index", "Department_Code", "University_Code", "Titles", "Google.Scholar.ID")]      # A set of covariates 
