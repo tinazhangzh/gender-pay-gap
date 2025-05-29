@@ -30,7 +30,7 @@ def process_chunk(chunk, chunk_df, start_index):
     consecutive_errors = 0
 
     for one_name in chunk:
-        # Setup a new proxy for each iteration or after several consecutive errors
+        # Setup a new proxy for each iteration
         pg = ProxyGenerator()
         if not pg.FreeProxies() or consecutive_errors > 3:
             if not pg.FreeProxies():
