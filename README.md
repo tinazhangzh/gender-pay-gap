@@ -20,21 +20,21 @@ This repo contains code for analyzing gender-based salary disparities among tenu
 
 ## 🧐 Assumptions Check
 
-To ensure validity of causal estimates, we examine the following key assumptions:
+To ensure validity of causal estimates, we examine the following three key assumptions:
 
 - **Unconfoundedness (No Unmeasured Confounding)**
-  - Assumes that all covariates affecting both gender (as exposure) and salary (as outcome) are observed and included in the model.
-  - We incorporate rich covariate information: academic title, working years, department, institution, and bibliometric productivity (i10-index).
-  - While untestable, this assumption is supported by the comprehensiveness of administrative and scholarly data.
-
+  - Assumes that all covariates affecting both gender (as exposure) and salary (as outcome) are observed and included in the model
+  - We incorporate rich covariate information: academic title, working years, department, institution, and academic productivity (i10-index)
+  - Propensity Score Matching (PSM) is applied and covariate balance between male and female faculty before and after matching is examined to approximate this assumption
+    
 - **Positivity (Overlap)**
-  - Requires that each faculty member has a positive probability of being either male or female given their covariates.
-  - Checked via distribution of estimated propensity scores: confirmed that common support exists across groups.
-  - Extreme propensity scores are trimmed to improve match quality.
+  - Requires that each faculty member has a positive probability of being either male or female given their covariates
+  - Checked via distribution of estimated propensity scores: confirmed that common support exists across groups
+  - Extreme propensity scores are trimmed to improve match quality
 
-- 3. **Consistency and SUTVA**
-  - Assumes that one individual’s salary is not affected by another’s gender (no interference) and that gender is consistently defined.
-  - Plausible in this institutional context, where salaries are assigned individually and gender classification is binary and consistent across records.
+- **Consistency and SUTVA**
+  - Assumes that one individual’s salary is not affected by another’s gender (no interference) and that gender is consistently defined
+  - Plausible in this institutional context, where salaries are assigned individually and gender classification is binary and consistent across records
 
 These checks support the identification strategy used in our PSM and Causal Forest estimations.
 
