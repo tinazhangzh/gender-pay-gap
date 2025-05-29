@@ -1,4 +1,4 @@
-# 3. Causal Forest model
+# Causal Forest model
 Y <- data$log10_Salary      # Outcome variable            
 W <- data$Gender        # Binary treatment indicator           
 X <- data[, c("Working_Years", "log10_i10index", "Department_Code", "University_Code", "Titles", "Google.Scholar.ID")]      # A set of covariates 
