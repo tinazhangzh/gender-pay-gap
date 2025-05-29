@@ -1,4 +1,4 @@
-# 2. PSM model
+# PSM model
 # 1) Propensity Scores
 # Propensity score model
 new_propensity_model <- glm(Gender ~ University_Code : Department_Code : log10_i10index + Google.Scholar.ID + Titles : Working_Years, 
