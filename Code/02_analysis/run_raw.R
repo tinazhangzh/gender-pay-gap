@@ -1,4 +1,4 @@
-# 1. Raw Model
+# Raw Model
 # Wage Difference in Percetage 
 average_salary_by_gender <- data %>%
   group_by(Gender) %>%
