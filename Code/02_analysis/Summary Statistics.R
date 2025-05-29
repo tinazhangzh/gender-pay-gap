@@ -123,9 +123,6 @@ plot2 <- ggplot(data, aes(x = Salary,
 # Combine plots
 combined_plots <- grid.arrange(plot1, plot2, ncol = 2)
 
-# Save the combined plot
-# ggsave("salary_distribution_analysis2.pdf", combined_plots, 
-#width = 12, height = 6, dpi = 300)
 
 # Create violin plot alternative
 violin_plot <- ggplot(data, aes(x = factor(Gender, labels = c("Male", "Female")), 
