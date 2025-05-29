@@ -8,7 +8,7 @@ library(car)
 # Data Cleaning
 # 1) Deal with N/A in `Gender` manually
 # List all data with N/A in `Gender`
-genderize_data <- whole_data%>%filter(whole_data$ga_gender != "female" &whole_data$ga_gender != "male")
+genderize_data <- whole_data%>%filter(whole_data$ga_gender != "female" & whole_data$ga_gender != "male")
 write.csv(genderize_data, "genderize_data.csv", row.names = FALSE)
 # Deal with this dataset manually
 update_genderize_data <- read.csv("update_genderize_data.csv")
@@ -30,10 +30,10 @@ cleaning_data2 <- cleaning_data2 %>% select(Institution, Last_Name, First_Name, 
 # 3) Carnegie Classification for `University_Code`
 cleaning_data3 <- cleaning_data2 %>%
   mutate(University_Code = case_when(
-    Institution %in% c('ASU', 'FSU', 'NCCU', 'UNCW', 'WCU', 'WSSU', 'UNCP') ~ 'master',
-    Institution %in% c('ECSU', 'UNCA') ~ 'bachelor',
+    Institution %in% c('ECSU', 'FSU', 'NCCU', 'WCU', 'UNCP') ~ 'master',
+    Institution %in% c('UNCA', 'UNCSA', 'WSSU') ~ 'bachelor',
     Institution %in% c('NCSU', 'UNC-CH') ~ 'DU/VA',
-    Institution %in% c('ECU', 'UNCC', 'UNCG', 'UNCSA', 'NCA&T') ~ 'DRU(H)'
+    Institution %in% c('ASU', 'ECU', 'UNCC', 'UNCG', 'NCA&T', 'UNCW') ~ 'DRU(H)'
   ))
 cleaning_data3 <- cleaning_data3 %>%
   mutate(University_Code = ifelse(University_Code %in% c("bachelor", "master"), 
