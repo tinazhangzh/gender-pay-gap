@@ -1,6 +1,6 @@
-# Gender Wage Gap in NC Public Universities
+# Gender Wage Gap in the University of North Carolina System
 
-This repo contains code for analyzing gender-based salary disparities among professors in the North Carolina public university system using causal inference methods.
+This repo contains code for analyzing gender-based salary disparities among tenure-track faculties in the University of North Carolina System using both descriptive regression and causal inference methods.
 
 ## 📁 Data
 
@@ -12,16 +12,44 @@ This repo contains code for analyzing gender-based salary disparities among prof
   - `title`: Assistant, Associate, or Full Professor
   - `working_years`: 2022 - initial hire year
   - `university_code`: Carnegie classification (Bachelor/Master, DRU(H), DU/VA)
-  - `department_code`: 6 broad fields (STEM, Humanities, Business, etc.)
-  - `log10(i10_index)`: publication metric from Google Scholar (with imputation)
+  - `department_code`: 6 broad fields (Arts and Humanities, Business, Medicine and Health Science, etc.)
+  - `log10(i10_index)`: academic productivity metric from Google Scholar (with imputation)
 
 > 📌 Preprocessing code in `01-cleaning/`
+
+
+## 🧐 Assumptions Check
+
+To ensure validity of causal estimates, we examine the following key assumptions:
+
+- **Unconfoundedness (No Unmeasured Confounding)**
+  - Assumes that all covariates affecting both gender (as exposure) and salary (as outcome) are observed and included in the model.
+  - We incorporate rich covariate information: academic title, working years, department, institution, and bibliometric productivity (i10-index).
+  - While untestable, this assumption is supported by the comprehensiveness of administrative and scholarly data.
+
+- **Positivity (Overlap)**
+  - Requires that each faculty member has a positive probability of being either male or female given their covariates.
+  - Checked via distribution of estimated propensity scores: confirmed that common support exists across groups.
+  - Extreme propensity scores are trimmed to improve match quality.
+
+- 3. **Consistency and SUTVA**
+  - Assumes that one individual’s salary is not affected by another’s gender (no interference) and that gender is consistently defined.
+  - Plausible in this institutional context, where salaries are assigned individually and gender classification is binary and consistent across records.
+
+These checks support the identification strategy used in our PSM and Causal Forest estimations.
+
 
 ## ⚙️ Methods
 
 Implemented in R:
 
-- **Raw gap**: unadjusted average salary difference
+- **Raw Gap**
+  - Unadjusted average salary difference between male and female faculty
+  - Provides a baseline, descriptive comparison
+- **Ordinary Least Squares (OLS)**
+  - Linear regression with key covariates (e.g., title, experience, institution, department, research productivity)
+  - Provides a conditional estimate of the gender gap
+  - Used as a baseline for comparison with causal estimates  
 - **Propensity Score Matching (PSM)**  
   - Logistic model with interaction terms:
     - `title × working_years`
@@ -31,7 +59,8 @@ Implemented in R:
   - Estimate ATE and ITE
   - Subgroup analysis by working years and research productivity
 
-> 📌 Scripts in `02-analysis/`
+> 📌 R Scripts for both Assumptions Check and Methods are in `02-analysis/`
+
 
 ## ▶️ Run Example
 
