@@ -1,6 +1,8 @@
 # Gender Wage Gap in the University of North Carolina System
 
-This repo contains code for analyzing gender-based salary disparities among tenure-track faculties in the University of North Carolina System using both descriptive regression and causal inference methods.
+This repo contains code for analyzing gender-based salary disparities among tenure-track faculties in the University of North Carolina System using both descriptive regression and causal inference methods. 
+
+[![arXiv](https://img.shields.io/badge/arXiv-2505.24078-b31b1b.svg)](https://arxiv.org/abs/2505.24078)
 
 ## 📁 Data
 
